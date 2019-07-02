@@ -1,0 +1,769 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4683F736C16330066E64188A60D19028 /* PandaHook-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AE3B176C4C7FC8F2848FE80CCCD642 /* PandaHook-dummy.m */; };
+		47B60600B2EE4AFB060DC42CDC6D0995 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		507C11F7235A7847DFA4956A273F816D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		50D208DDE995C08241937F5119612E42 /* ReplaceMe.m in Sources */ = {isa = PBXBuildFile; fileRef = E44273C700910D0F084D7324D96905F3 /* ReplaceMe.m */; };
+		5114C40E3010EC1347A1928BBC28F4F2 /* Pods-PandaHook_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D2F967D657D11B093E45D068C35E64 /* Pods-PandaHook_Example-dummy.m */; };
+		622D8972556BE670CFF26F38EC5AFF6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		902EDA972D9F2CA3928D01F2214B02CD /* Pods-PandaHook_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 78652AE265B05FDFF1C2F06C9FC110BA /* Pods-PandaHook_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0A1BCA5572C511B01FB7277D36F907B /* Pods-PandaHook_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2448661C73B731B39B9DA3825142F2EB /* Pods-PandaHook_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DCE8BD198A3F2C01268329EF0F52602E /* PandaHook-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 34495327DE73D59BFFA0B27B3E0149FF /* PandaHook-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F0DF34370745F4FEA6D30AA646A2FD7E /* Pods-PandaHook_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 480D7D2128D7AF222F72FF90CAA38F25 /* Pods-PandaHook_Tests-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4C85090C19906901FB070AC4A91B6A6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9BA4C8B0DF35D68E73EC44E5A111E91C;
+			remoteInfo = "Pods-PandaHook_Example";
+		};
+		98A9BAA8CC45383041CB2425543F28B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6700227B841B7211F0EBD08819AD4DAD;
+			remoteInfo = PandaHook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0114ED259EA3E5137317167C958AD336 /* Pods-PandaHook_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PandaHook_Tests.modulemap"; sourceTree = "<group>"; };
+		06C36ACAF7BDBD7E05FBE8E3B9954F9D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		21AE3B176C4C7FC8F2848FE80CCCD642 /* PandaHook-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PandaHook-dummy.m"; sourceTree = "<group>"; };
+		2448661C73B731B39B9DA3825142F2EB /* Pods-PandaHook_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PandaHook_Example-umbrella.h"; sourceTree = "<group>"; };
+		2833F3664D33C478A001D45FC7828927 /* Pods_PandaHook_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PandaHook_Tests.framework; path = "Pods-PandaHook_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		34495327DE73D59BFFA0B27B3E0149FF /* PandaHook-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PandaHook-umbrella.h"; sourceTree = "<group>"; };
+		37EB99709758D9E1A48964B86E55FC52 /* Pods-PandaHook_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PandaHook_Example.modulemap"; sourceTree = "<group>"; };
+		480D7D2128D7AF222F72FF90CAA38F25 /* Pods-PandaHook_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PandaHook_Tests-dummy.m"; sourceTree = "<group>"; };
+		48DF39576C9353E92A5220893AF2F610 /* Pods-PandaHook_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PandaHook_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		52E5DCBE3A994F2A5285891E6DD2905A /* Pods-PandaHook_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PandaHook_Tests-Info.plist"; sourceTree = "<group>"; };
+		5DAEB620E071DB7FB1FC576A6FA14BBE /* Pods_PandaHook_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PandaHook_Example.framework; path = "Pods-PandaHook_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		619A1A203DE0A8768C850DC4896E2708 /* Pods-PandaHook_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PandaHook_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		655655D32A979122E3DB6866521A4FDB /* Pods-PandaHook_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PandaHook_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		6BF36074E8372757E968E370BCCCC8C6 /* PandaHook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PandaHook.framework; path = PandaHook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73B0EBCE05EE8C6C500982E6371E1113 /* Pods-PandaHook_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PandaHook_Example-frameworks.sh"; sourceTree = "<group>"; };
+		78652AE265B05FDFF1C2F06C9FC110BA /* Pods-PandaHook_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PandaHook_Tests-umbrella.h"; sourceTree = "<group>"; };
+		9A5EE65F1DBC84A464B34956E6A1B0C3 /* Pods-PandaHook_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PandaHook_Example.release.xcconfig"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A6FDDFC431DA2922BDDB76F98FDA7D1F /* Pods-PandaHook_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PandaHook_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		AB8B09C1E85D2D4B407040C588E3CBA4 /* PandaHook.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PandaHook.modulemap; sourceTree = "<group>"; };
+		AEC59223962B1CAC0013D61974AE9802 /* PandaHook.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = PandaHook.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B3E3BD026A72F45B98714E719ACD64BE /* PandaHook-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "PandaHook-Info.plist"; sourceTree = "<group>"; };
+		C2D2F967D657D11B093E45D068C35E64 /* Pods-PandaHook_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PandaHook_Example-dummy.m"; sourceTree = "<group>"; };
+		C2D48CA2242EB8DD11729CD6A986BFA2 /* PandaHook-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PandaHook-prefix.pch"; sourceTree = "<group>"; };
+		C4AF1BDDB2FE3748457B9CC5548065D9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CD64E8DC017A5D645DFAC2BB42126C0C /* Pods-PandaHook_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PandaHook_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D091E9B2329D23E060EA9C97D9208CE8 /* Pods-PandaHook_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PandaHook_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		D20F52DD0AE446D3128D14BDC2F77AAD /* PandaHook.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PandaHook.xcconfig; sourceTree = "<group>"; };
+		E3BBAC24C89DE1BB6112BD6A9BEFB249 /* Pods-PandaHook_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PandaHook_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		E44273C700910D0F084D7324D96905F3 /* ReplaceMe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ReplaceMe.m; path = PandaHook/Classes/ReplaceMe.m; sourceTree = "<group>"; };
+		ED6DEFC1A00B7CFDE6C6FB77E3871DD7 /* Pods-PandaHook_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PandaHook_Example-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		79DBB42209101EA72873B40E1C540F12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				622D8972556BE670CFF26F38EC5AFF6E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E42C52917A0E7B182ECE2EDC24C3AAB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47B60600B2EE4AFB060DC42CDC6D0995 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5FB13CD77AC24A4035A198DEAC87660 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				507C11F7235A7847DFA4956A273F816D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		125EA02DE8D2E256CC71F2FB8932353A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6BF36074E8372757E968E370BCCCC8C6 /* PandaHook.framework */,
+				5DAEB620E071DB7FB1FC576A6FA14BBE /* Pods_PandaHook_Example.framework */,
+				2833F3664D33C478A001D45FC7828927 /* Pods_PandaHook_Tests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		254EA779F20B2B22818961DAA2DA9DF9 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				06C36ACAF7BDBD7E05FBE8E3B9954F9D /* LICENSE */,
+				AEC59223962B1CAC0013D61974AE9802 /* PandaHook.podspec */,
+				C4AF1BDDB2FE3748457B9CC5548065D9 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		584571B4390E89BAE6CB7EA7B50BC4E1 /* Pods-PandaHook_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0114ED259EA3E5137317167C958AD336 /* Pods-PandaHook_Tests.modulemap */,
+				CD64E8DC017A5D645DFAC2BB42126C0C /* Pods-PandaHook_Tests-acknowledgements.markdown */,
+				655655D32A979122E3DB6866521A4FDB /* Pods-PandaHook_Tests-acknowledgements.plist */,
+				480D7D2128D7AF222F72FF90CAA38F25 /* Pods-PandaHook_Tests-dummy.m */,
+				52E5DCBE3A994F2A5285891E6DD2905A /* Pods-PandaHook_Tests-Info.plist */,
+				78652AE265B05FDFF1C2F06C9FC110BA /* Pods-PandaHook_Tests-umbrella.h */,
+				619A1A203DE0A8768C850DC4896E2708 /* Pods-PandaHook_Tests.debug.xcconfig */,
+				E3BBAC24C89DE1BB6112BD6A9BEFB249 /* Pods-PandaHook_Tests.release.xcconfig */,
+			);
+			name = "Pods-PandaHook_Tests";
+			path = "Target Support Files/Pods-PandaHook_Tests";
+			sourceTree = "<group>";
+		};
+		605FA742EB38787676CC8E1FEF996D01 /* PandaHook */ = {
+			isa = PBXGroup;
+			children = (
+				E44273C700910D0F084D7324D96905F3 /* ReplaceMe.m */,
+				254EA779F20B2B22818961DAA2DA9DF9 /* Pod */,
+				FA840EF514A4794B62B3F2BDD5FEA4B3 /* Support Files */,
+			);
+			name = PandaHook;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		669156C4514DD0210841542A7BBB4345 /* Pods-PandaHook_Example */ = {
+			isa = PBXGroup;
+			children = (
+				37EB99709758D9E1A48964B86E55FC52 /* Pods-PandaHook_Example.modulemap */,
+				48DF39576C9353E92A5220893AF2F610 /* Pods-PandaHook_Example-acknowledgements.markdown */,
+				D091E9B2329D23E060EA9C97D9208CE8 /* Pods-PandaHook_Example-acknowledgements.plist */,
+				C2D2F967D657D11B093E45D068C35E64 /* Pods-PandaHook_Example-dummy.m */,
+				73B0EBCE05EE8C6C500982E6371E1113 /* Pods-PandaHook_Example-frameworks.sh */,
+				ED6DEFC1A00B7CFDE6C6FB77E3871DD7 /* Pods-PandaHook_Example-Info.plist */,
+				2448661C73B731B39B9DA3825142F2EB /* Pods-PandaHook_Example-umbrella.h */,
+				A6FDDFC431DA2922BDDB76F98FDA7D1F /* Pods-PandaHook_Example.debug.xcconfig */,
+				9A5EE65F1DBC84A464B34956E6A1B0C3 /* Pods-PandaHook_Example.release.xcconfig */,
+			);
+			name = "Pods-PandaHook_Example";
+			path = "Target Support Files/Pods-PandaHook_Example";
+			sourceTree = "<group>";
+		};
+		7DB9F06C8B8B29951254A088D3E0A5C0 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				669156C4514DD0210841542A7BBB4345 /* Pods-PandaHook_Example */,
+				584571B4390E89BAE6CB7EA7B50BC4E1 /* Pods-PandaHook_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		9B055D0CFEA43187E72B03DED11F5662 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				DFEFCD1FF47CD3EC371EDFB0A471AE42 /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				125EA02DE8D2E256CC71F2FB8932353A /* Products */,
+				7DB9F06C8B8B29951254A088D3E0A5C0 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9B055D0CFEA43187E72B03DED11F5662 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DFEFCD1FF47CD3EC371EDFB0A471AE42 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				605FA742EB38787676CC8E1FEF996D01 /* PandaHook */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		FA840EF514A4794B62B3F2BDD5FEA4B3 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AB8B09C1E85D2D4B407040C588E3CBA4 /* PandaHook.modulemap */,
+				D20F52DD0AE446D3128D14BDC2F77AAD /* PandaHook.xcconfig */,
+				21AE3B176C4C7FC8F2848FE80CCCD642 /* PandaHook-dummy.m */,
+				B3E3BD026A72F45B98714E719ACD64BE /* PandaHook-Info.plist */,
+				C2D48CA2242EB8DD11729CD6A986BFA2 /* PandaHook-prefix.pch */,
+				34495327DE73D59BFFA0B27B3E0149FF /* PandaHook-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/PandaHook";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		98CF423B7A094C29F17DED9D46863665 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0A1BCA5572C511B01FB7277D36F907B /* Pods-PandaHook_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2049C5566AF5930532278F85E9482C0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				902EDA972D9F2CA3928D01F2214B02CD /* Pods-PandaHook_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2A211AEE76BB3E4F08B6681919B1A18 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCE8BD198A3F2C01268329EF0F52602E /* PandaHook-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		649FDE75B8FC93A8F37D3D5B8D511A87 /* Pods-PandaHook_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89F5FCD1320BDB27E38BDBC6F5FE1EE7 /* Build configuration list for PBXNativeTarget "Pods-PandaHook_Tests" */;
+			buildPhases = (
+				B2049C5566AF5930532278F85E9482C0 /* Headers */,
+				2035F536A8D4EB7B2E399719E48C3579 /* Sources */,
+				E42C52917A0E7B182ECE2EDC24C3AAB7 /* Frameworks */,
+				F481A480301B4A6446199AEFC36D764A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5C19112F349D7BD33C68437AB08A3BB6 /* PBXTargetDependency */,
+			);
+			name = "Pods-PandaHook_Tests";
+			productName = "Pods-PandaHook_Tests";
+			productReference = 2833F3664D33C478A001D45FC7828927 /* Pods_PandaHook_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6700227B841B7211F0EBD08819AD4DAD /* PandaHook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A395F4FB0AF2A95F2D59A1CFC6830380 /* Build configuration list for PBXNativeTarget "PandaHook" */;
+			buildPhases = (
+				C2A211AEE76BB3E4F08B6681919B1A18 /* Headers */,
+				EA95CEC0832DACD91BCD0E1A380CC749 /* Sources */,
+				F5FB13CD77AC24A4035A198DEAC87660 /* Frameworks */,
+				7D6734681BDFB90DC52E98DC42ED91EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PandaHook;
+			productName = PandaHook;
+			productReference = 6BF36074E8372757E968E370BCCCC8C6 /* PandaHook.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9BA4C8B0DF35D68E73EC44E5A111E91C /* Pods-PandaHook_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53424C7864195549C8784836F00D0160 /* Build configuration list for PBXNativeTarget "Pods-PandaHook_Example" */;
+			buildPhases = (
+				98CF423B7A094C29F17DED9D46863665 /* Headers */,
+				45107AAB907234C4B5D6450B24E3D852 /* Sources */,
+				79DBB42209101EA72873B40E1C540F12 /* Frameworks */,
+				E48AA43E03A105781CFB0E8DAE5AB73E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				40E397D7E65767153E04EECBFCF19FA8 /* PBXTargetDependency */,
+			);
+			name = "Pods-PandaHook_Example";
+			productName = "Pods-PandaHook_Example";
+			productReference = 5DAEB620E071DB7FB1FC576A6FA14BBE /* Pods_PandaHook_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 125EA02DE8D2E256CC71F2FB8932353A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6700227B841B7211F0EBD08819AD4DAD /* PandaHook */,
+				9BA4C8B0DF35D68E73EC44E5A111E91C /* Pods-PandaHook_Example */,
+				649FDE75B8FC93A8F37D3D5B8D511A87 /* Pods-PandaHook_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7D6734681BDFB90DC52E98DC42ED91EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E48AA43E03A105781CFB0E8DAE5AB73E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F481A480301B4A6446199AEFC36D764A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2035F536A8D4EB7B2E399719E48C3579 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0DF34370745F4FEA6D30AA646A2FD7E /* Pods-PandaHook_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45107AAB907234C4B5D6450B24E3D852 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5114C40E3010EC1347A1928BBC28F4F2 /* Pods-PandaHook_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA95CEC0832DACD91BCD0E1A380CC749 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4683F736C16330066E64188A60D19028 /* PandaHook-dummy.m in Sources */,
+				50D208DDE995C08241937F5119612E42 /* ReplaceMe.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		40E397D7E65767153E04EECBFCF19FA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PandaHook;
+			target = 6700227B841B7211F0EBD08819AD4DAD /* PandaHook */;
+			targetProxy = 98A9BAA8CC45383041CB2425543F28B5 /* PBXContainerItemProxy */;
+		};
+		5C19112F349D7BD33C68437AB08A3BB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-PandaHook_Example";
+			target = 9BA4C8B0DF35D68E73EC44E5A111E91C /* Pods-PandaHook_Example */;
+			targetProxy = 4C85090C19906901FB070AC4A91B6A6A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		05DF210AC65EBB0E593AAF976B2C2177 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		13C2E3714FF9E265A6ACC993B214565F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D20F52DD0AE446D3128D14BDC2F77AAD /* PandaHook.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PandaHook/PandaHook-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PandaHook/PandaHook-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PandaHook/PandaHook.modulemap";
+				PRODUCT_MODULE_NAME = PandaHook;
+				PRODUCT_NAME = PandaHook;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		421ECB1396280A8D83853C3DDBED1700 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		506B0F9D0F29D3755A7A0F864CB55FA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A5EE65F1DBC84A464B34956E6A1B0C3 /* Pods-PandaHook_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-PandaHook_Example/Pods-PandaHook_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-PandaHook_Example/Pods-PandaHook_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6A8574FC7BE9BD12410F2047B5EB6D66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3BBAC24C89DE1BB6112BD6A9BEFB249 /* Pods-PandaHook_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-PandaHook_Tests/Pods-PandaHook_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-PandaHook_Tests/Pods-PandaHook_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6DB4586B1367ABEF5E34BCB9637512AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6FDDFC431DA2922BDDB76F98FDA7D1F /* Pods-PandaHook_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-PandaHook_Example/Pods-PandaHook_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-PandaHook_Example/Pods-PandaHook_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7DA6C04C88C02627EC98D6383C434736 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 619A1A203DE0A8768C850DC4896E2708 /* Pods-PandaHook_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-PandaHook_Tests/Pods-PandaHook_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-PandaHook_Tests/Pods-PandaHook_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		84D6C8BBF02443F5977F537B0FBC1898 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D20F52DD0AE446D3128D14BDC2F77AAD /* PandaHook.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PandaHook/PandaHook-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PandaHook/PandaHook-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PandaHook/PandaHook.modulemap";
+				PRODUCT_MODULE_NAME = PandaHook;
+				PRODUCT_NAME = PandaHook;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				421ECB1396280A8D83853C3DDBED1700 /* Debug */,
+				05DF210AC65EBB0E593AAF976B2C2177 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		53424C7864195549C8784836F00D0160 /* Build configuration list for PBXNativeTarget "Pods-PandaHook_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DB4586B1367ABEF5E34BCB9637512AE /* Debug */,
+				506B0F9D0F29D3755A7A0F864CB55FA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		89F5FCD1320BDB27E38BDBC6F5FE1EE7 /* Build configuration list for PBXNativeTarget "Pods-PandaHook_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7DA6C04C88C02627EC98D6383C434736 /* Debug */,
+				6A8574FC7BE9BD12410F2047B5EB6D66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A395F4FB0AF2A95F2D59A1CFC6830380 /* Build configuration list for PBXNativeTarget "PandaHook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13C2E3714FF9E265A6ACC993B214565F /* Debug */,
+				84D6C8BBF02443F5977F537B0FBC1898 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

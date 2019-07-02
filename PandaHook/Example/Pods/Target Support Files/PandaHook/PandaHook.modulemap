@@ -1,0 +1,6 @@
+framework module PandaHook {
+  umbrella header "PandaHook-umbrella.h"
+
+  export *
+  module * { export * }
+}

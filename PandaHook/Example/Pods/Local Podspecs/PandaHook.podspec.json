@@ -1,0 +1,22 @@
+{
+  "name": "PandaHook",
+  "version": "0.1.0",
+  "summary": "A short description of PandaHook.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/lan_mailbox@163.com/PandaHook",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "lan_mailbox@163.com": "tianyun1201@163.com"
+  },
+  "source": {
+    "git": "https://github.com/lan_mailbox@163.com/PandaHook.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "PandaHook/Classes/**/*"
+}
