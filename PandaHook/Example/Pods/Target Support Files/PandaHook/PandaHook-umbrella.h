@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "PandaHook.h"
 
 FOUNDATION_EXPORT double PandaHookVersionNumber;
 FOUNDATION_EXPORT const unsigned char PandaHookVersionString[];

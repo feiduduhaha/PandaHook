@@ -38,8 +38,8 @@
 
 /* Begin PBXFileReference section */
 		2E7ECF7C810CC57A985E941F /* Pods-PandaHook_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandaHook_Example.release.xcconfig"; path = "Target Support Files/Pods-PandaHook_Example/Pods-PandaHook_Example.release.xcconfig"; sourceTree = "<group>"; };
-		4D5B2386637AA01625933001 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		52A60D5C2BBB68DE78CD798F /* PandaHook.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = PandaHook.podspec; path = ../PandaHook.podspec; sourceTree = "<group>"; };
+		4D5B2386637AA01625933001 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		52A60D5C2BBB68DE78CD798F /* PandaHook.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PandaHook.podspec; path = ../PandaHook.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6003F58A195388D20070C39A /* PandaHook_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandaHook_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,7 +61,7 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		61C224BEA6DCEEBCECE95583 /* Pods-PandaHook_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandaHook_Tests.release.xcconfig"; path = "Target Support Files/Pods-PandaHook_Tests/Pods-PandaHook_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		726743F15942224050ECFCED /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		726743F15942224050ECFCED /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8C5793009E8ECA4A573B0920 /* Pods-PandaHook_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandaHook_Example.debug.xcconfig"; path = "Target Support Files/Pods-PandaHook_Example/Pods-PandaHook_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B5D9C5DF8C17899244526381 /* Pods-PandaHook_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandaHook_Tests.debug.xcconfig"; path = "Target Support Files/Pods-PandaHook_Tests/Pods-PandaHook_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,7 +103,6 @@
 				B5D9C5DF8C17899244526381 /* Pods-PandaHook_Tests.debug.xcconfig */,
 				61C224BEA6DCEEBCECE95583 /* Pods-PandaHook_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -258,6 +257,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
