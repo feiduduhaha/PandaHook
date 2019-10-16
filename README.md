@@ -8,6 +8,24 @@
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+```objc
+    [PandaHook hookObj:self whichMeThod:@selector(testHookInsSel:vc:obj:) when:PandaHookTimeBefore with:^(NSArray *contextArr) {
+
+        NSLog(@"对象方法hook执行的自定义代码");
+    }];
+    [PandaHook hookObj:[self class] whichMeThod:@selector(testHookInsSel:vc:obj:) when:PandaHookTimeInstead with:^(NSArray *contextArr) {
+
+        NSLog(@"类方法hook执行的自定义代码");
+    }];
+    self.testBlock = ^void(NSInteger testInteger , NSString * testStr ,  id obj){
+        
+        NSLog(@"\n原block打印：\n%@\n%@\n%@",@(testInteger),testStr,obj);
+    };
+    [PandaHook hookObj:self.testBlock whichMeThod:@selector(invoke) when:PandaHookTimeInstead with:^(NSArray *contextArr) {
+       
+        NSLog(@"block hook执行的自定义代码");
+    }];
+```
 
 ## Requirements
 
@@ -22,7 +40,7 @@ pod 'PandaHook'
 
 ## Author
 
-lan_mailbox@163.com, tianyun1201@163.com
+lan_mailbox@163.com
 
 ## License
 
