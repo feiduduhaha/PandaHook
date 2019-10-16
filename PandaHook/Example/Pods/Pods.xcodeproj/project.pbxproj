@@ -14,6 +14,8 @@
 		71A9F47D2D099E0310F201A4EF0D070F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
 		902EDA972D9F2CA3928D01F2214B02CD /* Pods-PandaHook_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 78652AE265B05FDFF1C2F06C9FC110BA /* Pods-PandaHook_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0A1BCA5572C511B01FB7277D36F907B /* Pods-PandaHook_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2448661C73B731B39B9DA3825142F2EB /* Pods-PandaHook_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E86361E72356C54100A71818 /* PandaHookBlockPool.h in Headers */ = {isa = PBXBuildFile; fileRef = E86361E52356C54100A71818 /* PandaHookBlockPool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E86361E82356C54100A71818 /* PandaHookBlockPool.m in Sources */ = {isa = PBXBuildFile; fileRef = E86361E62356C54100A71818 /* PandaHookBlockPool.m */; };
 		E929E78EA84FF22228057AAF4D218123 /* PandaHook-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4EBAEA22B472E565448B2EAD2B45FB /* PandaHook-dummy.m */; };
 		F09AF00E07A8917A6AB15D0FEFB04A19 /* PandaHook-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F4FF70B1AE6554895ED4F207EF417F6 /* PandaHook-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F0DF34370745F4FEA6D30AA646A2FD7E /* Pods-PandaHook_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 480D7D2128D7AF222F72FF90CAA38F25 /* Pods-PandaHook_Tests-dummy.m */; };
@@ -68,6 +70,8 @@
 		D127F2836AB1EB46458FEFFEA4CA7F49 /* PandaHook-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PandaHook-prefix.pch"; sourceTree = "<group>"; };
 		DD203BFD6DF8C23D4941DD12548D1091 /* PandaHook.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PandaHook.xcconfig; sourceTree = "<group>"; };
 		E3BBAC24C89DE1BB6112BD6A9BEFB249 /* Pods-PandaHook_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PandaHook_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		E86361E52356C54100A71818 /* PandaHookBlockPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PandaHookBlockPool.h; sourceTree = "<group>"; };
+		E86361E62356C54100A71818 /* PandaHookBlockPool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PandaHookBlockPool.m; sourceTree = "<group>"; };
 		ED6DEFC1A00B7CFDE6C6FB77E3871DD7 /* Pods-PandaHook_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PandaHook_Example-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +118,8 @@
 			children = (
 				18314554F2B2494606CBE8C95E65ABC9 /* PandaHook.h */,
 				57FE1D73C18E26FF0E0E81688DF9E292 /* PandaHook.m */,
+				E86361E52356C54100A71818 /* PandaHookBlockPool.h */,
+				E86361E62356C54100A71818 /* PandaHookBlockPool.m */,
 				C73686489CC67D2C506DCADB96B6C0A2 /* Pod */,
 				9B8174216CE562DC47D70762E3C278A2 /* Support Files */,
 			);
@@ -236,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F09AF00E07A8917A6AB15D0FEFB04A19 /* PandaHook-umbrella.h in Headers */,
+				E86361E72356C54100A71818 /* PandaHookBlockPool.h in Headers */,
 				70EA3448B924FD0C489EDA1A2FB456F1 /* PandaHook.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E929E78EA84FF22228057AAF4D218123 /* PandaHook-dummy.m in Sources */,
+				E86361E82356C54100A71818 /* PandaHookBlockPool.m in Sources */,
 				F96A5599FF842A5CE7E524F35255D782 /* PandaHook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

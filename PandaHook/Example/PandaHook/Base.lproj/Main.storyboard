@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Panda View Controller-->
         <scene sceneID="wQg-tq-qST">
             <objects>
                 <viewController id="whP-gf-Uak" customClass="PandaViewController" sceneMemberID="viewController">
@@ -20,12 +18,46 @@
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aZx-cO-bh7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEo-ug-TW7">
+                                        <rect key="frame" x="139.5" y="0.0" width="96" height="222.5"/>
+                                        <state key="normal" title="hook对象方法"/>
+                                        <connections>
+                                            <action selector="clickObjBtn:" destination="whP-gf-Uak" eventType="touchUpInside" id="zCj-Ee-YM8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJV-vt-kkP">
+                                        <rect key="frame" x="147.5" y="222.5" width="80" height="222"/>
+                                        <state key="normal" title="hook类方法"/>
+                                        <connections>
+                                            <action selector="clickClassBtn:" destination="whP-gf-Uak" eventType="touchUpInside" id="iGR-Fe-Dba"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K0b-tu-z5F">
+                                        <rect key="frame" x="134.5" y="444.5" width="106" height="222.5"/>
+                                        <state key="normal" title="hook block对象"/>
+                                        <connections>
+                                            <action selector="clickBlockBtn:" destination="whP-gf-Uak" eventType="touchUpInside" id="Lnv-RY-jwU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aZx-cO-bh7" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" id="N5u-Zt-rzZ"/>
+                            <constraint firstItem="Mvr-aV-6Um" firstAttribute="top" secondItem="aZx-cO-bh7" secondAttribute="bottom" id="kOm-kL-UlH"/>
+                            <constraint firstItem="aZx-cO-bh7" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" id="la2-DV-r0n"/>
+                            <constraint firstAttribute="trailing" secondItem="aZx-cO-bh7" secondAttribute="trailing" id="wsc-dy-r6S"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="433"/>
+            <point key="canvasLocation" x="304.80000000000001" y="432.23388305847078"/>
         </scene>
     </scenes>
 </document>

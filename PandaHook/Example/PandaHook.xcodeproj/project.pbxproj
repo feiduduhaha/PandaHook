@@ -247,6 +247,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "lan_mailbox@163.com";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = LN3G54EQ8Z;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -494,6 +497,7 @@
 			baseConfigurationReference = 8C5793009E8ECA4A573B0920 /* Pods-PandaHook_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LN3G54EQ8Z;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PandaHook/PandaHook-Prefix.pch";
 				INFOPLIST_FILE = "PandaHook/PandaHook-Info.plist";
@@ -510,6 +514,7 @@
 			baseConfigurationReference = 2E7ECF7C810CC57A985E941F /* Pods-PandaHook_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LN3G54EQ8Z;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PandaHook/PandaHook-Prefix.pch";
 				INFOPLIST_FILE = "PandaHook/PandaHook-Info.plist";

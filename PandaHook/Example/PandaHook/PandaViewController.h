@@ -10,4 +10,5 @@
 
 @interface PandaViewController : UIViewController
 
++ (void)classMethodTest;
 @end
