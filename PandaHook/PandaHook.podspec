@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PandaHook'
-  s.version          = '1.0.1'
-  s.summary          = 'A short description of PandaHook.'
+  s.version          = '1.0.2'
+  s.summary          = 'PandaHook.方便hook'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/lan_mailbox@163.com/PandaHook'
+  s.homepage         = 'https://github.com/feiduduhaha/PandaHook'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'lan_mailbox@163.com' => 'tianyun1201@163.com' }
@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'PandaHook/Classes/**/*'
+  s.source_files = 'PandaHook/Classes/*.{h,m}'
   
   # s.resource_bundles = {
   #   'PandaHook' => ['PandaHook/Assets/*.png']

@@ -11,6 +11,7 @@
 #endif
 
 #import "PandaHook.h"
+#import "PandaHookBlockPool.h"
 
 FOUNDATION_EXPORT double PandaHookVersionNumber;
 FOUNDATION_EXPORT const unsigned char PandaHookVersionString[];

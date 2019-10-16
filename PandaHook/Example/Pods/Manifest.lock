@@ -1,5 +1,5 @@
 PODS:
-  - PandaHook (0.1.0)
+  - PandaHook (1.0.1)
 
 DEPENDENCIES:
   - PandaHook (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PandaHook: a0a5d6cc44e972afe570a93de7c69d5fdec25838
+  PandaHook: 2b88e79d3d49c81d56fd0809da86424b4fbe35d0
 
 PODFILE CHECKSUM: 15422c6e82acf0830f93e77ccccd63318694f955
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.8.3
