@@ -21,6 +21,7 @@ typedef void(^TestBlock)(NSInteger testInteger , NSString * testStr ,  id obj);
 {
     [super viewDidLoad];
     
+    
     [PandaHook hookObj:self whichMeThod:@selector(testHookInsSel:vc:obj:) when:PandaHookTimeBefore with:^(NSArray *contextArr) {
 
         NSLog(@"对象方法hook执行的自定义代码");
