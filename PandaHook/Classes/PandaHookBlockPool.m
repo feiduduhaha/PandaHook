@@ -18,15 +18,22 @@
     return self;
 }
 
-- (NSString *)addNewBlcokWithIdentify:(NSString *)identify block:(id)block callTime:(PandaHookTime)calltime{
+- (NSString *)addNewBlcokWithClass:(NSString *)className
+                           selName:(NSString *)selName
+                             block:(id)block
+                          callTime:(PandaHookTime)calltime
+{
     
     @try {
         
-        NSMutableDictionary * newDic = self.recordArr[calltime][identify]?:[NSMutableDictionary new];
+        NSMutableDictionary * selDic = self.recordArr[calltime][selName]?:[NSMutableDictionary new];
+        NSMutableDictionary * classDic = selDic[className]?:[NSMutableDictionary new];
         NSString * blockIdentify = @([NSDate date].timeIntervalSince1970).stringValue;
-        [newDic setObject:block forKey:blockIdentify];
-        [self.recordArr[calltime] setObject:newDic forKey:identify];
-        return [NSString stringWithFormat:@"%@#%@",identify,blockIdentify];
+        [classDic setObject:block forKey:blockIdentify];
+        [selDic setObject:classDic forKey:className];
+        [self.recordArr[calltime] setObject:selDic forKey:selName];
+        
+        return [NSString stringWithFormat:@"%@|%@|%@",className,selName,blockIdentify];
     } @catch (NSException *exception) {
         NSLog(@"%@",exception);
     } @finally {
@@ -36,7 +43,23 @@
 - (NSArray *)getBlocksWithIdentify:(NSString *)identify callTime:(PandaHookTime)calltime{
     
     @try {
-        NSMutableDictionary * recordDic = self.recordArr[calltime][identify];
+        
+        NSArray <NSString *>* identifyArr = [identify componentsSeparatedByString:@"|"];
+        NSString * selName = identifyArr.lastObject;
+        NSString * className = identifyArr.firstObject;
+        NSMutableDictionary * selDic = self.recordArr[calltime][selName];
+        NSMutableDictionary * recordDic = self.recordArr[calltime][selName][className];
+        if (!recordDic.count) {
+            
+            for (NSString * classKey in selDic) {
+                
+                recordDic = self.recordArr[calltime][selName][classKey];
+                if ([NSClassFromString(className) isSubclassOfClass:NSClassFromString(classKey)] && recordDic.count) {
+                    
+                    return recordDic.allValues;
+                }
+            }
+        }
         return recordDic.allValues;
     } @catch (NSException *exception) {
         NSLog(@"%@",exception);
@@ -46,27 +69,31 @@
 - (void)removeBlcokWithIdentify:(NSString *)identify callTime:(PandaHookTime)calltime{
     
     @try {
-        NSArray<NSString *> *arr = [identify componentsSeparatedByString:@"#"];
-        NSMutableDictionary * recordDic = self.recordArr[calltime][arr.firstObject];
-        [recordDic removeObjectForKey:arr.lastObject];
+        
+        NSMutableArray<NSString *> *identifyArr = [identify componentsSeparatedByString:@"|"].copy;
+        [identifyArr removeObject:@""];
+        NSString * selName = identifyArr.lastObject;
+        NSString * className = identifyArr[1];
+        NSString * blockIdentify = identifyArr.firstObject;
+        NSMutableDictionary * recordDic = self.recordArr[calltime][selName][className];
+        [recordDic removeObjectForKey:blockIdentify];
     } @catch (NSException *exception) {
         NSLog(@"%@",exception);
     } @finally {
     }
 }
 
-- (BOOL)didHookedWithIdentify:(NSString *)identify{
+- (BOOL)didHookedWithClass:(NSString *)className
+                   selName:(NSString *)selName
+                  callTime:(PandaHookTime)calltime
+{
     
-    NSInteger count = 0;
     @try {
-        for (NSDictionary <NSString *,NSDictionary *> * recordDic in self.recordArr) {
-            
-            count += recordDic[identify].allValues.count;
-        }
+        NSMutableDictionary * recordDic = self.recordArr[calltime][selName][className];
+        return recordDic.count;
     } @catch (NSException *exception) {
         NSLog(@"%@",exception);
     } @finally {
     }
-    return count;
 }
 @end

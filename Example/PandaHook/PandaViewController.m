@@ -22,11 +22,11 @@ typedef void(^TestBlock)(NSInteger testInteger , NSString * testStr ,  id obj);
     [super viewDidLoad];
     
     
-    [PandaHook hookObj:self whichMeThod:@selector(testHookInsSel:vc:obj:) when:PandaHookTimeBefore with:^(NSArray *contextArr) {
+    [PandaHook hookObj:[UIViewController new] whichMeThod:@selector(viewDidAppear:) when:PandaHookTimeInstead with:^(NSArray *contextArr) {
 
         NSLog(@"对象方法hook执行的自定义代码");
     }];
-    [PandaHook hookObj:[self class] whichMeThod:@selector(testHookInsSel:vc:obj:) when:PandaHookTimeInstead with:^(NSArray *contextArr) {
+    [PandaHook hookObj:self.class whichMeThod:@selector(testHookInsSel:vc:obj:) when:PandaHookTimeBefore with:^(NSArray *contextArr) {
 
         NSLog(@"类方法hook执行的自定义代码");
     }];
@@ -38,11 +38,22 @@ typedef void(^TestBlock)(NSInteger testInteger , NSString * testStr ,  id obj);
        
         NSLog(@"block hook执行的自定义代码");
     }];
-     
+    
 }
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+}
+
 - (IBAction)clickObjBtn:(UIButton *)sender {
     
     [self testHookInsSel:1 vc:self obj:@{@"test_key":@"test-Obj"}];
+    UIViewController * vc = [UIViewController new];
+    [self presentViewController:vc animated:NO completion:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [vc dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 - (IBAction)clickClassBtn:(UIButton *)sender {
     

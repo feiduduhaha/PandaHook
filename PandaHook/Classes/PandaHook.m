@@ -31,12 +31,6 @@ _objc_msgForward_stret(id _Nonnull receiver, SEL _Nonnull sel, ...)
     OBJC_AVAILABLE(10.6, 3.0, 9.0, 1.0, 2.0)
     OBJC_ARM64_UNAVAILABLE;
 #endif
-static PandaHook * hookManager = nil;
-NSString * hookRecordIdentify (id obj , SEL sel){
-    
-    BOOL isClass = object_isClass(obj);
-    return [NSString stringWithFormat:@"%@%@%@",[obj class],(isClass?@"+":@"-"),NSStringFromSelector(sel)];
-}
 
 typedef NS_ENUM (int, PandaHook_BLOCKFLAGS) {
     PandaHook_BLOCK_HAS_COPY_DISPOSE =  (1 << 25),
@@ -69,6 +63,12 @@ typedef  struct PandaHook_Block_layout  *PandaHook_Block;
 typedef  void(^HookBlock) (NSDictionary * context);
 #define PandaHook_DeepCopyBlockTag @"PandaHook_DeepCopyBlockTag"
 
+static PandaHook * hookManager = nil;
+NSString * hookRecordIdentify (id obj , SEL sel){
+    
+    BOOL isClass = object_isClass(obj);
+    return [NSString stringWithFormat:@"%@|%@%@",[obj class],(isClass?@"+":@"-"),NSStringFromSelector(sel)];
+}
 @interface PandaHook ()
 
 @property (nonatomic , strong) PandaHookBlockPool * blockPool;
@@ -89,19 +89,26 @@ typedef  void(^HookBlock) (NSDictionary * context);
                  when:(PandaHookTime)hookTime
                  with:(PandaHookBlock) customImplementation
 {
-    NSString * hookIdentify = hookRecordIdentify(targetObj, method);
+    NSString * hookIdentify = nil;
+    
     @try {
-        
-        if (![hookManager.blockPool didHookedWithIdentify:hookIdentify]) {
+                    
+        if ([NSStringFromClass([targetObj class]) hasPrefix:@"__NSGlobalBlock"] ||
+            [NSStringFromClass([targetObj class]) hasPrefix:@"__NSStackBlock"] ||
+            [NSStringFromClass([targetObj class]) hasPrefix:@"__NSMallocBlock"]) {
             
-            if ([NSStringFromClass([targetObj class]) hasPrefix:@"__NSGlobalBlock"] ||
-                [NSStringFromClass([targetObj class]) hasPrefix:@"__NSStackBlock"] ||
-                [NSStringFromClass([targetObj class]) hasPrefix:@"__NSMallocBlock"]) {
+             hookIdentify = [self hookBlock:targetObj hookTime:hookTime callback:customImplementation];
+        } else {
+            
+            NSString * className = NSStringFromClass([targetObj class]);
+            NSString * selName = NSStringFromSelector(method);
+            BOOL didHook = [hookManager.blockPool didHookedWithClass:className selName:selName callTime:hookTime];
+            BOOL objIsClass = object_isClass(targetObj);
+            selName = objIsClass ? [@"+" stringByAppendingString:selName] : [@"-" stringByAppendingString:selName];
+            
+            if (!didHook) {
                 
-                 [self hookBlock:targetObj hookTime:hookTime callback:customImplementation];
-            } else {
                 
-                BOOL objIsClass = object_isClass(targetObj);
                 id handalObj =  objIsClass ? object_getClass(targetObj) : targetObj;
                 //将旧实现重命名保存
                 Method oldMethod =  objIsClass? class_getClassMethod(targetObj, method) : class_getInstanceMethod([targetObj class], method);
@@ -121,9 +128,8 @@ typedef  void(^HookBlock) (NSDictionary * context);
                     // @"forward重定向失败";
                 }
             }
+            hookIdentify = [hookManager.blockPool addNewBlcokWithClass:className selName:selName block:customImplementation callTime:hookTime];
         }
-        
-        hookIdentify = [hookManager.blockPool addNewBlcokWithIdentify:hookIdentify block:customImplementation callTime:hookTime];
     } @catch (NSException *exception) {
         
         NSLog(@"%@",exception);
@@ -253,7 +259,7 @@ typedef  void(^HookBlock) (NSDictionary * context);
         IMP msgForwardIMP = _objc_msgForward;
         oriBlock->invoke = (void *) msgForwardIMP;
     }
-    hookIdentify = [hookManager.blockPool addNewBlcokWithIdentify:hookIdentify block:callback callTime:hookTime];
+    hookIdentify = [hookManager.blockPool addNewBlcokWithClass:@"NSBlock" selName:@"invoke:" block:callback callTime:hookTime];
 
     return hookIdentify;
 }
