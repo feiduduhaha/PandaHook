@@ -1,6 +1,6 @@
 {
   "name": "PandaHook",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "summary": "PandaHook.方便hook",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/feiduduhaha/PandaHook",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/feiduduhaha/PandaHook.git",
-    "tag": "1.0.2"
+    "tag": "1.0.3"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "PandaHook/Classes/*.{h,m}"
+  "source_files": "PandaHook/**/*.{h,m}"
 }

@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'PandaHook/Classes/*.{h,m}'
+  s.source_files = 'PandaHook/**/*.{h,m}'
   
   # s.resource_bundles = {
   #   'PandaHook' => ['PandaHook/Assets/*.png']
