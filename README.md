@@ -6,8 +6,8 @@
 [![Platform](https://img.shields.io/cocoapods/p/PandaHook.svg?style=flat)](https://cocoapods.org/pods/PandaHook)
 ```
     在学习和使用了aspect后，对于我自己的runtime理解有很大提升。随着我们需求的提升，aspect有些特性并不能满足实际需要。
-比如：aspect同一个类的同一个方法只能hook一次，第一次hook成功后的所有hook都会失败。但实际应用中，其他组件也可能引用
-aspect进行hook，导致其他人就不能使用aspect进行hook了。并且aspect并不能hook block。在此背景下，我写了这个组件。
+比如：aspect同一个类的同一个方法只能hook一次，第一次hook成功后的所有hook都会失败。但实际应用中，其他组件可能引用
+aspect进行某方法A的hook，导致其他地方就不能使用aspectd对该方法A 进行hook了。并且aspect并不能hook block。在此背景下，我写了这个组件。
     PandaHook的特点有：
         支持普通OC类和block的hook;
         支持同一个类同一个方法的不同时机hook（比如之前、之后、或者替换掉原来实现）;
