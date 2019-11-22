@@ -26,7 +26,7 @@ typedef void(^PandaHookBlock)(NSArray * contextArr);
 /// @param customImplementation 自定义实现
 /// 返回值是本次hook的identify，可用此identify取消本次hook ,如果hook失败，返回nil
 + (NSString *)hookObj:(id)targetObj
-          whichMeThod:(SEL)method
+          whichMethod:(SEL)method
                  when:(PandaHookTime)hookTime
                  with:(PandaHookBlock) customImplementation;
 

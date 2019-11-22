@@ -85,7 +85,7 @@ NSString * hookRecordIdentify (id obj , SEL sel){
 /// @param customImplementation 自定义实现
 /// 返回值是本次hook的identify，可用此identify取消本次hook
 + (NSString *)hookObj:(id)targetObj
-          whichMeThod:(SEL)method
+          whichMethod:(SEL)method
                  when:(PandaHookTime)hookTime
                  with:(PandaHookBlock) customImplementation
 {
@@ -107,7 +107,6 @@ NSString * hookRecordIdentify (id obj , SEL sel){
             selName = objIsClass ? [@"+" stringByAppendingString:selName] : [@"-" stringByAppendingString:selName];
             
             if (!didHook) {
-                
                 
                 id handalObj =  objIsClass ? object_getClass(targetObj) : targetObj;
                 //将旧实现重命名保存
