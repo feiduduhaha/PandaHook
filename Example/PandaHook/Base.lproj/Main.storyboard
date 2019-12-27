@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5Ez-Fn-59n">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="pEB-zk-Rwq">
+            <objects>
+                <navigationController id="5Ez-Fn-59n" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rHu-A8-BTX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="whP-gf-Uak" kind="relationship" relationship="rootViewController" id="SHw-QO-yjp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wVc-gn-69j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-446" y="438"/>
+        </scene>
         <!--Panda View Controller-->
         <scene sceneID="wQg-tq-qST">
             <objects>
@@ -20,24 +36,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aZx-cO-bh7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEo-ug-TW7">
-                                        <rect key="frame" x="139.5" y="0.0" width="96" height="222.5"/>
+                                        <rect key="frame" x="139.5" y="0.0" width="96" height="207.5"/>
                                         <state key="normal" title="hook对象方法"/>
                                         <connections>
                                             <action selector="clickObjBtn:" destination="whP-gf-Uak" eventType="touchUpInside" id="zCj-Ee-YM8"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJV-vt-kkP">
-                                        <rect key="frame" x="147.5" y="222.5" width="80" height="222"/>
+                                        <rect key="frame" x="147.5" y="207.5" width="80" height="208"/>
                                         <state key="normal" title="hook类方法"/>
                                         <connections>
                                             <action selector="clickClassBtn:" destination="whP-gf-Uak" eventType="touchUpInside" id="iGR-Fe-Dba"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K0b-tu-z5F">
-                                        <rect key="frame" x="134.5" y="444.5" width="106" height="222.5"/>
+                                        <rect key="frame" x="134.5" y="415.5" width="106" height="207.5"/>
                                         <state key="normal" title="hook block对象"/>
                                         <connections>
                                             <action selector="clickBlockBtn:" destination="whP-gf-Uak" eventType="touchUpInside" id="Lnv-RY-jwU"/>
@@ -54,6 +70,7 @@
                             <constraint firstAttribute="trailing" secondItem="aZx-cO-bh7" secondAttribute="trailing" id="wsc-dy-r6S"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="cRc-M6-4OY"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -21,34 +21,44 @@ typedef void(^TestBlock)(NSInteger testInteger , NSString * testStr ,  id obj);
 {
     [super viewDidLoad];
     
-    
-    [PandaHook hookObj:[UIViewController new] whichMeThod:@selector(viewDidAppear:) when:PandaHookTimeInstead with:^(NSArray *contextArr) {
+    [PandaHook hookObj:[UIViewController class] whichMethod:@selector(viewWillAppear:) isClassMethod:NO when:PandaHookTimeBefore with:^(NSArray *contextArr) {
 
-        NSLog(@"对象方法hook执行的自定义代码");
+        NSLog(@"-viewDidAppear: PandaHookTimeBefore");
     }];
-    [PandaHook hookObj:self.class whichMeThod:@selector(testHookInsSel:vc:obj:) when:PandaHookTimeBefore with:^(NSArray *contextArr) {
 
-        NSLog(@"类方法hook执行的自定义代码");
+    [PandaHook hookObj:self whichMethod:@selector(testHookInsSel:vc:obj:) isClassMethod:YES when:PandaHookTimeAfter with:^(NSArray *contextArr) {
+
+        NSLog(@"+testHookInsSel:vc:obj: PandaHookTimeAfter");
     }];
     self.testBlock = ^void(NSInteger testInteger , NSString * testStr ,  id obj){
-        
+
         NSLog(@"\n原block打印：\n%@\n%@\n%@",@(testInteger),testStr,obj);
     };
-    [PandaHook hookObj:self.testBlock whichMeThod:@selector(invoke) when:PandaHookTimeInstead with:^(NSArray *contextArr) {
-       
+    [PandaHook hookObj:self.testBlock whichMethod:@selector(invoke) isClassMethod:YES when:PandaHookTimeInstead with:^(NSArray *contextArr) {
+
         NSLog(@"block hook执行的自定义代码");
     }];
     
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    NSLog(@"-viewWillAppear: 原生");
+}
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+//    NSLog(@"-viewDidAppear: 原生");
+}
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
     
 }
-
 - (IBAction)clickObjBtn:(UIButton *)sender {
     
-    [self testHookInsSel:1 vc:self obj:@{@"test_key":@"test-Obj"}];
+//    [self testHookInsSel:1 vc:self obj:@{@"test_key":@"test-Obj"}];
     UIViewController * vc = [UIViewController new];
+    vc.view.backgroundColor = [UIColor orangeColor];
+//    [self.navigationController pushViewController:vc animated:YES];
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:vc animated:NO completion:nil];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
@@ -76,11 +86,11 @@ typedef void(^TestBlock)(NSInteger testInteger , NSString * testStr ,  id obj);
 
 - (void)testHookInsSel:(NSInteger)first vc:(UIViewController *)vc obj:(id)obj_id{
     
-    NSLog(@"\n原对象方法打印：\n%@\n%@\n%@",@(first),vc,obj_id);
+    NSLog(@"\n-testHookInsSel:vc:obj:原生 参数：\n%@\n%@\n%@",@(first),vc,obj_id);
 }
 
 + (void)testHookInsSel:(NSInteger)first vc:(UIViewController *)vc obj:(id)obj_id{
     
-    NSLog(@"\n原类方法打印：\n%@\n%@\n%@",@(first),vc,obj_id);
+    NSLog(@"\n+testHookInsSel:vc:obj:原生 打印：\n%@\n%@\n%@",@(first),vc,obj_id);
 }
 @end

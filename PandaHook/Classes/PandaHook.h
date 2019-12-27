@@ -22,11 +22,13 @@ typedef void(^PandaHookBlock)(NSArray * contextArr);
 /// hook hook对象方法传入对象，hook类方法传入类
 /// @param targetObj 目标对象
 /// @param method 要hook的方法
+/// @param isClassMethod 是否是类方法
 /// @param hookTime hook时机
 /// @param customImplementation 自定义实现
 /// 返回值是本次hook的identify，可用此identify取消本次hook ,如果hook失败，返回nil
 + (NSString *)hookObj:(id)targetObj
           whichMethod:(SEL)method
+        isClassMethod:(BOOL)isClassMethod
                  when:(PandaHookTime)hookTime
                  with:(PandaHookBlock) customImplementation;
 

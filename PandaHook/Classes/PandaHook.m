@@ -61,73 +61,71 @@ struct PandaHook_Block_layout {
 const char * PandaHook_Block_signature(void *aBlock);
 typedef  struct PandaHook_Block_layout  *PandaHook_Block;
 typedef  void(^HookBlock) (NSDictionary * context);
+
 #define PandaHook_DeepCopyBlockTag @"PandaHook_DeepCopyBlockTag"
+#define PandaHook_Continue(status,msg) if(!status) {NSLog(@"%@",msg); return nil;}
 
 static PandaHook * hookManager = nil;
-NSString * hookRecordIdentify (id obj , SEL sel){
+
+NSString * hookRecordIdentify (id obj , SEL sel , BOOL isClassMethod){
     
-    BOOL isClass = object_isClass(obj);
-    return [NSString stringWithFormat:@"%@|%@%@",[obj class],(isClass?@"+":@"-"),NSStringFromSelector(sel)];
+    return [NSString stringWithFormat:@"%@[%@ %@]",(isClassMethod?@"+":@"-"),obj,NSStringFromSelector(sel)];
 }
+
+NSString * saveMethodName (SEL sel , BOOL isClassMethod){
+    
+    return [NSString stringWithFormat:@"pandaSaveOld_%@_%@",(isClassMethod?@"ClassM":@"InstanceM"),NSStringFromSelector(sel)];
+}
+
 @interface PandaHook ()
-
 @property (nonatomic , strong) PandaHookBlockPool * blockPool;
-
 @property (nonatomic , assign) IMP pandaForward;
-
 @end
+
 @implementation PandaHook
 
-/// hook对象的方法 - 只对该对象生效
-/// @param targetObj 目标对象
-/// @param method 要hook的方法
-/// @param hookTime hook时机
-/// @param customImplementation 自定义实现
-/// 返回值是本次hook的identify，可用此identify取消本次hook
 + (NSString *)hookObj:(id)targetObj
           whichMethod:(SEL)method
+        isClassMethod:(BOOL)isClassMethod
                  when:(PandaHookTime)hookTime
                  with:(PandaHookBlock) customImplementation
 {
+    if (!customImplementation) return nil;
     NSString * hookIdentify = nil;
-    
     @try {
-                    
-        if ([NSStringFromClass([targetObj class]) hasPrefix:@"__NSGlobalBlock"] ||
-            [NSStringFromClass([targetObj class]) hasPrefix:@"__NSStackBlock"] ||
-            [NSStringFromClass([targetObj class]) hasPrefix:@"__NSMallocBlock"]) {
-            
-             hookIdentify = [self hookBlock:targetObj hookTime:hookTime callback:customImplementation];
-        } else {
-            
-            NSString * className = NSStringFromClass([targetObj class]);
-            NSString * selName = NSStringFromSelector(method);
-            BOOL didHook = [hookManager.blockPool didHookedWithClass:className selName:selName callTime:hookTime];
-            BOOL objIsClass = object_isClass(targetObj);
-            selName = objIsClass ? [@"+" stringByAppendingString:selName] : [@"-" stringByAppendingString:selName];
-            
-            if (!didHook) {
+        //判断同一个对象的同一个方法是否hook过
+        BOOL didHook = [hookManager.blockPool didHookedWithIdentify:hookIdentify];
+        if (!didHook) {//如果没有hook过，进行hook
+         
+            if ([NSStringFromClass([targetObj class]) hasPrefix:@"__NSGlobalBlock"] ||
+                [NSStringFromClass([targetObj class]) hasPrefix:@"__NSStackBlock"] ||
+                [NSStringFromClass([targetObj class]) hasPrefix:@"__NSMallocBlock"]) {
                 
-                id handalObj =  objIsClass ? object_getClass(targetObj) : targetObj;
+                didHook = [self hookBlock:targetObj hookTime:hookTime callback:customImplementation];
+                hookIdentify = hookRecordIdentify(targetObj, @selector(invoke), NO);
+            } else {
+                
+                hookIdentify =  hookRecordIdentify(targetObj, method, isClassMethod);
+                Class handalClass =  isClassMethod ? object_getClass([targetObj class]) : [targetObj class];
                 //将旧实现重命名保存
-                Method oldMethod =  objIsClass? class_getClassMethod(targetObj, method) : class_getInstanceMethod([targetObj class], method);
-                NSString * newSelName = [NSString stringWithFormat:@"pandaHookOld_%@",NSStringFromSelector(method)];
-                if (![self addMethodForObj:handalObj method:oldMethod newMethodName:newSelName]) {
-                    
-                    // @"旧方法保存失败";
-                }
-                //将旧方法指向forward实现
-                method_setImplementation(oldMethod, _objc_msgForward);
-                
+                Method oldMethod =  isClassMethod ? class_getClassMethod(handalClass, method) : class_getInstanceMethod(handalClass, method);
+                PandaHook_Continue(oldMethod,@"PandaHook-未找到要hook的方法");
+                NSString * newSelName = saveMethodName(method, isClassMethod);
+                PandaHook_Continue([self addMethodForObj:handalClass method:oldMethod newMethodName:newSelName],
+                                   @"PandaHook-保存原方法失败，放弃hook");
                 //将targetObj的forward实现指向pandaForward
                 SEL pandaSel = @selector(pandaHook_forwardInvocation:);
                 Method pandaMethod = class_getInstanceMethod([PandaHook class], pandaSel);
-                if (![self addMethodForObj:handalObj method:pandaMethod newMethodName:@"forwardInvocation:"]) {
-                    
-                    // @"forward重定向失败";
-                }
+                PandaHook_Continue([self addMethodForObj:handalClass method:pandaMethod newMethodName:@"forwardInvocation:"],
+                @"PandaHook-重定forward失败放弃hook");
+                //将旧方法指向forward实现，为了安全起见，这步操作一定要上面的操作全部成功才能操作
+                method_setImplementation(oldMethod, _objc_msgForward);
+                didHook = YES;
             }
-            hookIdentify = [hookManager.blockPool addNewBlcokWithClass:className selName:selName block:customImplementation callTime:hookTime];
+        }
+        if (didHook) {//如果成功hook，保存实现
+            
+            [hookManager.blockPool addNewBlcokWithIdentify:hookIdentify andCallTime:hookTime block:customImplementation];
         }
     } @catch (NSException *exception) {
         
@@ -138,12 +136,12 @@ NSString * hookRecordIdentify (id obj , SEL sel){
     return hookIdentify;
 }
 
-+ (BOOL)addMethodForObj:(id)obj method:(Method)method newMethodName:(NSString *)newSelName{
++ (BOOL)addMethodForObj:(Class)class method:(Method)method newMethodName:(NSString *)newSelName{
     
     @try {
         
         IMP pandaImp = method_getImplementation(method);
-        return class_addMethod([obj class],NSSelectorFromString(newSelName),pandaImp,method_getTypeEncoding(method));
+        return class_addMethod(class,NSSelectorFromString(newSelName),pandaImp,method_getTypeEncoding(method));
     } @catch (NSException *exception) {
         NSLog(@"%@",exception);
     } @finally {
@@ -157,13 +155,14 @@ NSString * hookRecordIdentify (id obj , SEL sel){
 */
 + (void)removeHookWithIdentify:(NSString *)identify hooktime:(PandaHookTime)hooktime{
     
-    [hookManager.blockPool removeBlcokWithIdentify:identify callTime:hooktime];
+    [hookManager.blockPool removeBlcokWithIdentify:identify andCallTime:hooktime];
 }
 
 #pragma mark  normal hook
 - (void)pandaHook_forwardInvocation:(NSInvocation *)invocation {
 
-    NSString * blcokIdentify = nil;
+    BOOL isClassMethod = object_isClass(invocation.target);
+    NSString * hookIdentify = nil;
     @try {
         
         //区分block或者其他oc类型，对invocation重定向
@@ -172,23 +171,23 @@ NSString * hookRecordIdentify (id obj , SEL sel){
             [NSStringFromClass([targetObj class]) hasPrefix:@"__NSStackBlock"] ||
             [NSStringFromClass([targetObj class]) hasPrefix:@"__NSMallocBlock"]) {
             
+            hookIdentify = hookRecordIdentify(invocation.target, @selector(invoke), NO);
             id deepCopy_Block = objc_getAssociatedObject(self, PandaHook_DeepCopyBlockTag);
             invocation.target = deepCopy_Block;
-            blcokIdentify = [NSString stringWithFormat:@"Block_%p",targetObj];
         }else{
             
-            blcokIdentify = hookRecordIdentify(invocation.target, invocation.selector);
-            invocation.selector = NSSelectorFromString([NSString stringWithFormat:@"%@%@",@"pandaHookOld_",NSStringFromSelector(invocation.selector)]);
+            invocation.selector = NSSelectorFromString(saveMethodName(invocation.selector, isClassMethod));
+            hookIdentify = hookRecordIdentify(invocation.target, invocation.selector, isClassMethod);
         }
         
         NSArray * argumentsArr = [PandaHook getAllArgumentsWith:invocation];
         //在执行原来实现的前、替换、后 三个时机分别执行hook代码
-        NSArray * arr = [hookManager.blockPool getBlocksWithIdentify:blcokIdentify callTime:PandaHookTimeBefore];
+        NSArray * arr = [hookManager.blockPool getBlocksWithIdentify:hookIdentify callTime:PandaHookTimeBefore];
         for (PandaHookBlock block in arr) {
             
             block(argumentsArr);
         }
-        arr = [hookManager.blockPool getBlocksWithIdentify:blcokIdentify callTime:PandaHookTimeInstead];
+        arr = [hookManager.blockPool getBlocksWithIdentify:hookIdentify callTime:PandaHookTimeInstead];
         if (arr.count) {
             
             for (PandaHookBlock block in arr) {
@@ -197,10 +196,13 @@ NSString * hookRecordIdentify (id obj , SEL sel){
             }
         }else{
             
-            [invocation invoke];
+            if ([invocation.target respondsToSelector:invocation.selector]) {
+                
+                [invocation invoke];
+            }
         }
         
-        arr = [hookManager.blockPool getBlocksWithIdentify:blcokIdentify callTime:PandaHookTimeAfter];
+        arr = [hookManager.blockPool getBlocksWithIdentify:hookIdentify callTime:PandaHookTimeAfter];
         for (PandaHookBlock block in arr) {
             
             block(argumentsArr);
@@ -219,10 +221,8 @@ NSString * hookRecordIdentify (id obj , SEL sel){
     Method method = class_getInstanceMethod([self class], @selector(methodSignatureForSelector:));
     return [NSMethodSignature signatureWithObjCTypes:method_getTypeEncoding(method)];
 }
-+ (NSString *)hookBlock:(id)blockObj hookTime:(PandaHookTime)hookTime callback:(PandaHookBlock)callback{
-    
-    NSString * hookIdentify = [NSString stringWithFormat:@"Block_%p",blockObj];
-    
++ (BOOL)hookBlock:(id)blockObj hookTime:(PandaHookTime)hookTime callback:(PandaHookBlock)callback{
+        
     Class class = NSClassFromString(@"NSBlock");
     //hook NSBlock
     static dispatch_once_t onceToken;
@@ -258,9 +258,7 @@ NSString * hookRecordIdentify (id obj , SEL sel){
         IMP msgForwardIMP = _objc_msgForward;
         oriBlock->invoke = (void *) msgForwardIMP;
     }
-    hookIdentify = [hookManager.blockPool addNewBlcokWithClass:@"NSBlock" selName:@"invoke:" block:callback callTime:hookTime];
-
-    return hookIdentify;
+    return YES;
 }
 
 /// 获取所有hook信息，用于查找排错
@@ -354,14 +352,14 @@ NSString * hookRecordIdentify (id obj , SEL sel){
 + (void)printfAllMethodList:(id)obj{
     
     NSLog(@"\n%@方法列表:",obj);
-    printf("\t对象方法");
+    printf("\t实例方法");
     unsigned int count;
     Method *methods = class_copyMethodList([obj class], &count);
     for (int i = 0; i < count; i++) {
         Method method = methods[i];
         SEL selector = method_getName(method);
         NSString *name = NSStringFromSelector(selector);
-        printf("\n\t-%s",[name UTF8String]);
+        printf("\n\t%s%s",(object_isClass(obj)?"+":"-"),[name UTF8String]);
     }
     free(methods);
         
@@ -372,7 +370,7 @@ NSString * hookRecordIdentify (id obj , SEL sel){
         Method method = classMethods[i];
         SEL selector = method_getName(method);
         NSString *name = NSStringFromSelector(selector);
-        printf("\n\t+%s",[name UTF8String]);
+        printf("\n\t%s%s",(object_isClass(obj)?"+":"-"),[name UTF8String]);
     }
     free(classMethods);
     printf("\n");

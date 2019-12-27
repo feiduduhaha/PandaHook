@@ -21,18 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSMutableDictionary * afterDic;
 @property (nonatomic , strong) NSArray<NSMutableDictionary *> * recordArr;
 
-- (BOOL)didHookedWithClass:(NSString *)className
-                   selName:(NSString *)selName
-                  callTime:(PandaHookTime)calltime;
-
-- (NSString *)addNewBlcokWithClass:(NSString *)className
-                           selName:(NSString *)selName
-                             block:(id)block
-                         callTime:(PandaHookTime)calltime;
-
+- (BOOL)didHookedWithIdentify:(NSString *)identify;
+- (void)addNewBlcokWithIdentify:(NSString *)identify andCallTime:(PandaHookTime)calltime block:(id)block;
+- (void)removeBlcokWithIdentify:(NSString *)identify andCallTime:(PandaHookTime)calltime;
 - (NSArray*)getBlocksWithIdentify:(NSString *)identify callTime:(PandaHookTime)calltime;
 
-- (void)removeBlcokWithIdentify:(NSString *)identify callTime:(PandaHookTime)calltime;
 @end
 
 NS_ASSUME_NONNULL_END
