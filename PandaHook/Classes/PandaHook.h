@@ -25,12 +25,20 @@ typedef void(^PandaHookBlock)(NSArray * contextArr);
 /// @param isClassMethod 是否是类方法
 /// @param hookTime hook时机
 /// @param customImplementation 自定义实现
-/// 返回值是本次hook的identify，可用此identify取消本次hook ,如果hook失败，返回nil
-+ (NSString *)hookObj:(id)targetObj
-          whichMethod:(SEL)method
-        isClassMethod:(BOOL)isClassMethod
-                 when:(PandaHookTime)hookTime
-                 with:(PandaHookBlock) customImplementation;
+/// 返回值是本次hook的自定义实现，内部对此block是弱引用的，需要外部管理生命周期
++ (PandaHookBlock)hookObj:(id)targetObj
+              whichMethod:(SEL)method
+            isClassMethod:(BOOL)isClassMethod
+                     when:(PandaHookTime)hookTime
+                     with:(PandaHookBlock) customImplementation;
+
+/// hookBlock
+/// @param block 要hook的blcok对象
+/// @param hookTime hook时机
+/// @param customImplementation  自定义实现
++ (PandaHookBlock)hookBlock:(id)block
+                       when:(PandaHookTime)hookTime
+                       with:(PandaHookBlock) customImplementation;
 
 ///取消hook，恢复到hook之前的代码
 + (void)removeHookWithIdentify:(NSString *)identify hooktime:(PandaHookTime)hooktime;

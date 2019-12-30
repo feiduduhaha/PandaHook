@@ -16,9 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PandaHookBlockPool : NSObject
 
-@property (nonatomic , strong) NSMutableDictionary * beforeDic;
-@property (nonatomic , strong) NSMutableDictionary * insteadDic;
-@property (nonatomic , strong) NSMutableDictionary * afterDic;
+@property (nonatomic , strong) NSMutableDictionary<NSString * , NSPointerArray * > * beforeDic;
+@property (nonatomic , strong) NSMutableDictionary<NSString * , NSPointerArray * > * insteadDic;
+@property (nonatomic , strong) NSMutableDictionary<NSString * , NSPointerArray * > * afterDic;
 @property (nonatomic , strong) NSArray<NSMutableDictionary *> * recordArr;
 
 - (BOOL)didHookedWithIdentify:(NSString *)identify;

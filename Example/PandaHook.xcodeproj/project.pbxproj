@@ -24,6 +24,8 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A9F29BBDBCFA4659C796D45A /* Pods_PandaHook_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD42DC3BFEB75FAA7E018D9E /* Pods_PandaHook_Tests.framework */; };
+		E8650EE423B9A63000984D88 /* PandaViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = E8650EE223B9A63000984D88 /* PandaViewController2.m */; };
+		E8650EE523B9A63000984D88 /* PandaViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8650EE323B9A63000984D88 /* PandaViewController2.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,9 @@
 		B5D9C5DF8C17899244526381 /* Pods-PandaHook_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandaHook_Tests.debug.xcconfig"; path = "Target Support Files/Pods-PandaHook_Tests/Pods-PandaHook_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CD42DC3BFEB75FAA7E018D9E /* Pods_PandaHook_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PandaHook_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1941CABF7233D3FC77F6510 /* Pods_PandaHook_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PandaHook_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8650EE123B9A63000984D88 /* PandaViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PandaViewController2.h; sourceTree = "<group>"; };
+		E8650EE223B9A63000984D88 /* PandaViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PandaViewController2.m; sourceTree = "<group>"; };
+		E8650EE323B9A63000984D88 /* PandaViewController2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PandaViewController2.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +153,9 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* PandaViewController.h */,
 				6003F5A6195388D20070C39A /* PandaViewController.m */,
+				E8650EE123B9A63000984D88 /* PandaViewController2.h */,
+				E8650EE223B9A63000984D88 /* PandaViewController2.m */,
+				E8650EE323B9A63000984D88 /* PandaViewController2.xib */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -284,6 +292,7 @@
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				E8650EE523B9A63000984D88 /* PandaViewController2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +378,7 @@
 			files = (
 				6003F59E195388D20070C39A /* PandaAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* PandaViewController.m in Sources */,
+				E8650EE423B9A63000984D88 /* PandaViewController2.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,6 +11,7 @@
 
 - (instancetype)init{
     self = [super init];
+    
     self.beforeDic = [NSMutableDictionary new];
     self.insteadDic = [NSMutableDictionary new];
     self.afterDic = [NSMutableDictionary new];
@@ -24,8 +25,12 @@
 }
 - (void)addNewBlcokWithIdentify:(NSString *)identify andCallTime:(PandaHookTime)calltime block:(id)block{
     
-    NSMutableArray * oriArr = [self getBlocksWithIdentify:identify callTime:calltime].mutableCopy;
-    [oriArr addObject:block];
+    NSPointerArray * oriArr = [NSPointerArray weakObjectsPointerArray];
+    for (id obj in [self getBlocksWithIdentify:identify callTime:calltime]) {
+        
+        [oriArr addPointer:(void *)obj];
+    }
+    [oriArr addPointer:(void *)block];
     if (calltime == PandaHookTimeBefore) {
         
         [self.beforeDic setObject:oriArr forKey:identify];
@@ -36,6 +41,7 @@
         
         [self.afterDic setObject:oriArr forKey:identify];
     }
+    
 }
 - (void)removeBlcokWithIdentify:(NSString *)identify andCallTime:(PandaHookTime)calltime{
     
@@ -55,13 +61,13 @@
     
     if (calltime == PandaHookTimeBefore) {
         
-        return self.beforeDic[identify] ?:[NSArray new];
+        return self.beforeDic[identify].allObjects ?:[NSArray new];
     } else if (calltime == PandaHookTimeInstead){
         
-        return self.insteadDic[identify] ?:[NSArray new];
+        return self.insteadDic[identify].allObjects ?:[NSArray new];
     }else{
         
-        return self.afterDic[identify] ?:[NSArray new];
+        return self.afterDic[identify].allObjects ?:[NSArray new];
     }
 }
 @end
