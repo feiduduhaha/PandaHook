@@ -26,11 +26,16 @@
 - (void)addNewBlcokWithIdentify:(NSString *)identify andCallTime:(PandaHookTime)calltime block:(id)block{
     
     NSPointerArray * oriArr = [NSPointerArray weakObjectsPointerArray];
+    BOOL shouldAdd = YES;
     for (id obj in [self getBlocksWithIdentify:identify callTime:calltime]) {
         
         [oriArr addPointer:(void *)obj];
+        if ([obj isEqual:block]) shouldAdd = NO;
     }
-    [oriArr addPointer:(void *)block];
+    if (shouldAdd) {
+        
+        [oriArr addPointer:(void *)block];
+    }
     if (calltime == PandaHookTimeBefore) {
         
         [self.beforeDic setObject:oriArr forKey:identify];

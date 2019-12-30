@@ -118,8 +118,11 @@ NSString * saveMethodName (SEL sel , BOOL isClassMethod){
         PandaHook_Continue(method_setImplementation(oldMethod, _objc_msgForward),@"PandaHook-旧forward指向pandaForward失败，放弃hook");
         didHook = YES;
     }
-    if (didHook) {//如果成功hook，保存实现
+    if (didHook) {//如果成功hook，保存实现,__NSStackBlock__类型需要转为__NSMallocBlock__ ，至于__NSGlobalBlock__类型，保存时会判断内存地址
         
+        if ([NSStringFromClass([customImplementation class]) isEqualToString:@"__NSStackBlock__"]) {
+            customImplementation = [customImplementation copy];
+        }
         [hookManager.blockPool addNewBlcokWithIdentify:hookIdentify andCallTime:hookTime block:customImplementation];
     }
     return customImplementation;

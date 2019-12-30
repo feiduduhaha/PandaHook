@@ -12,7 +12,6 @@
 
 typedef void(^TestBlock)(NSInteger testInteger , NSString * testStr ,  id obj);
 @interface PandaViewController ()
-
 @property (nonatomic , strong) TestBlock testBlock;
 @end
 
@@ -22,11 +21,11 @@ typedef void(^TestBlock)(NSInteger testInteger , NSString * testStr ,  id obj);
 {
     [super viewDidLoad];
     
-//    [PandaHook hookObj:[PandaViewController class] whichMethod:@selector(viewDidAppear:) isClassMethod:NO when:PandaHookTimeBefore with:^(NSArray *contextArr) {
-//
-//        NSLog(@"UIViewController页面出现的hook，执行的对象是%@",contextArr.firstObject);
-//    }];
-//
+    [PandaHook hookObj:[UIViewController class] whichMethod:@selector(viewDidAppear:) isClassMethod:NO when:PandaHookTimeBefore with:^(NSArray *contextArr) {
+
+        NSLog(@"UIViewController页面出现的hook，执行的对象是%@",contextArr.firstObject);
+    }];
+    
 //    [PandaHook hookObj:[PandaViewController class] whichMethod:@selector(testHookInsSel:vc:obj:) isClassMethod:YES when:PandaHookTimeAfter with:^(NSArray *contextArr) {
 //
 //        NSLog(@"PandaViewController类方法testHookInsSel:vc:obj:的hook");

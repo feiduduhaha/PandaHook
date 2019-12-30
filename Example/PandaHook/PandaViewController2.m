@@ -11,6 +11,8 @@
 #import <PandaHook/PandaHook.h>
 @interface PandaViewController2 ()
 
+@property (strong)NSPointerArray * oriArr;
+@property (strong) PandaHookBlock block;
 @end
 
 @implementation PandaViewController2
@@ -19,14 +21,38 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [PandaHook hookObj:self whichMethod:@selector(test) isClassMethod:NO when:PandaHookTimeBefore with:^(NSArray *contextArr) {
+    
+    NSInteger vount = 0;
+    self.block = [PandaHook hookObj:self whichMethod:@selector(test) isClassMethod:NO when:PandaHookTimeBefore with:^(NSArray *contextArr) {
 
         NSLog(@"PandaViewController2 hook的test方法调用");
+//        NSLog(@"PandaViewController2 hook的test方法调用%@",@(vount));
     }];
+    
+//    self.oriArr = [NSPointerArray weakObjectsPointerArray];
+//    [self.oriArr addPointer:(void *)([NSValue valueWithNonretainedObject:^void(NSArray *contextArr) {
+//
+//        NSLog(@"PandaViewController2 hook的test方法调用");
+//    }])];
+
+//    [self.oriArr addPointer:(void *)[NSObject new]];
+//    NSInteger congu= 0;
+//    PandaHookBlock block = ^void(NSArray *contextArr) {
+//
+//        NSLog(@"PandaViewController2 hook的test方法调用%@",@(congu));
+//    };
+//    [self.oriArr addPointer:(void *)block];
+    
+//    self.oriArr  = [NSMutableArray new];
+//    [self.oriArr addObject:[NSValue valueWithNonretainedObject:^void(NSArray *contextArr) {
+//
+//        NSLog(@"PandaViewController2 hook的test方法调用");
+//    }]];
 }
 - (void)viewDidAppear:(BOOL)animated{
- 
+    [super viewDidAppear:animated];
     [self test];
+//    NSLog(@"%@",self.oriArr.allObjects);
 }
 - (void)test{
    
