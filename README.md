@@ -18,21 +18,14 @@ aspect进行某方法A的hook，导致其他地方就不能使用aspectd对该�
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 ```objc
-    [PandaHook hookObj:self whichMeThod:@selector(testHookInsSel:vc:obj:) when:PandaHookTimeBefore with:^(NSArray *contextArr) {
-
-        NSLog(@"对象方法hook执行的自定义代码");
-    }];
-    [PandaHook hookObj:[self class] whichMeThod:@selector(testHookInsSel:vc:obj:) when:PandaHookTimeInstead with:^(NSArray *contextArr) {
-
-        NSLog(@"类方法hook执行的自定义代码");
-    }];
-    self.testBlock = ^void(NSInteger testInteger , NSString * testStr ,  id obj){
-        
-        NSLog(@"\n原block打印：\n%@\n%@\n%@",@(testInteger),testStr,obj);
-    };
-    [PandaHook hookObj:self.testBlock whichMeThod:@selector(invoke) when:PandaHookTimeInstead with:^(NSArray *contextArr) {
-       
-        NSLog(@"block hook执行的自定义代码");
+    //hook成功会返回自定义实现的block对象，需要外部管理其生命周期
+    self.hookBlock = [PandaHook hookClass:targetClass               //要hook的类
+                              whichMethod:@selector(targetSel:)     //要hook的方法
+                            isClassMethod:YES                       //hook的方法是类方法还是对象方法
+                                     when:PandaHookTimeBefore       //PandaHookTime 枚举中的定义值,自定义代码的执行时机
+                                     with:^(NSArray *contextArr)    //自定义代码blok，数组内是原方法的参数
+    {
+        //这里调用自定义实现
     }];
 ```
 

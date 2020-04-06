@@ -36,6 +36,7 @@
         
         [oriArr addPointer:(void *)block];
     }
+    [oriArr compact];
     if (calltime == PandaHookTimeBefore) {
         
         [self.beforeDic setObject:oriArr forKey:identify];
@@ -75,4 +76,5 @@
         return self.afterDic[identify].allObjects ?:[NSArray new];
     }
 }
+
 @end
