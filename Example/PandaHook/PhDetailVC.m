@@ -22,11 +22,16 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [PandaHook printfAllMethodList:self];
 }
 
 - (void)setHookType:(NSInteger)hookType{
     
     _hookType = hookType;
+    
+    
+}
+- (void)testPrivateSel{
     
     
 }

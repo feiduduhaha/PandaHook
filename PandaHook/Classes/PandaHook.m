@@ -117,8 +117,8 @@ NSString * saveMethodName (SEL sel , BOOL isClassMethod){
         //将targetObj的forward实现指向pandaForward
         SEL pandaSel = @selector(pandaHook_forwardInvocation:);
         Method pandaMethod = class_getInstanceMethod([PandaHook class], pandaSel);
-        PandaHook_Continue([self addMethodForObj:handalClass method:pandaMethod newMethodName:@"forwardInvocation:"],
-        @"PandaHook-保存原forwardInvocation:失败，放弃hook");
+        //PandaHook-保存原forwardInvocation:
+        [self addMethodForObj:handalClass method:pandaMethod newMethodName:@"forwardInvocation:"];
         //将旧方法指向forward实现，为了安全起见，这步操作一定要上面的操作全部成功才能操作
         PandaHook_Continue(method_setImplementation(oldMethod, _objc_msgForward),@"PandaHook-旧forward指向pandaForward失败，放弃hook");
         didHook = YES;
@@ -161,6 +161,12 @@ NSString * saveMethodName (SEL sel , BOOL isClassMethod){
 #pragma mark  normal hook
 - (void)pandaHook_forwardInvocation:(NSInvocation *)invocation {
 
+    if ([NSStringFromSelector(invocation.selector) isEqualToString:@"forwardInvocation:"]) {
+        
+        invocation.target = [object_getClass(invocation.target) superclass];
+        [invocation invoke];
+        return;
+    }
     BOOL isClassMethod = object_isClass(invocation.target);
     NSString * hookIdentify = nil;
     //区分block或者其他oc类型，对invocation重定向
@@ -193,6 +199,7 @@ NSString * saveMethodName (SEL sel , BOOL isClassMethod){
         [PandaHook fireInvocation:invocation withIdentify:hookIdentify];
     }
 }
+
 + (void)fireInvocation:(NSInvocation *)invocation withIdentify:(NSString *)hookIdentify{
     
     NSArray * argumentsArr = [PandaHook getAllArgumentsWith:invocation];
@@ -214,6 +221,12 @@ NSString * saveMethodName (SEL sel , BOOL isClassMethod){
         if ([invocation.target respondsToSelector:invocation.selector]) {
             
             [invocation invoke];
+        }else{
+            
+#ifdef DEBUG
+            //如果能响应方法，DEBUG下还是保持OC的逻辑抛错
+            [invocation.target doesNotRecognizeSelector:invocation.selector];
+#endif
         }
     }
     
@@ -362,25 +375,32 @@ NSString * saveMethodName (SEL sel , BOOL isClassMethod){
 + (void)printfAllMethodList:(id)obj{
     
     NSLog(@"\n%@方法列表:",obj);
-    printf("\t实例方法");
+    Class targetClass = [obj class];
     unsigned int count;
-    Method *methods = class_copyMethodList([obj class], &count);
-    for (int i = 0; i < count; i++) {
-        Method method = methods[i];
-        SEL selector = method_getName(method);
-        NSString *name = NSStringFromSelector(selector);
-        printf("\n\t%s%s",(object_isClass(obj)?"+":"-"),[name UTF8String]);
-    }
-    free(methods);
+    
+    if (!class_isMetaClass(targetClass)) {
         
-    obj = object_isClass(obj) ? obj : [obj class];
+        printf("\t实例方法");
+        Method *methods = class_copyMethodList(targetClass, &count);
+        for (int i = 0; i < count; i++) {
+            Method method = methods[i];
+            SEL selector = method_getName(method);
+            NSString *name = NSStringFromSelector(selector);
+            printf("\n\t%s%s","-",[name UTF8String]);
+        }
+        free(methods);
+        while (!class_isMetaClass(targetClass)) {
+
+            targetClass = object_getClass(targetClass);
+        }
+    }
     printf("\n\t类方法");
-    Method *classMethods = class_copyMethodList(object_getClass(obj), &count);
+    Method *classMethods = class_copyMethodList(targetClass, &count);
     for (int i = 0; i < count; i++) {
         Method method = classMethods[i];
         SEL selector = method_getName(method);
         NSString *name = NSStringFromSelector(selector);
-        printf("\n\t%s%s",(object_isClass(obj)?"+":"-"),[name UTF8String]);
+        printf("\n\t%s%s","+",[name UTF8String]);
     }
     free(classMethods);
     printf("\n");
