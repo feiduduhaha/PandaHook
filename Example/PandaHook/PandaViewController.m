@@ -7,83 +7,66 @@
 //
 
 #import "PandaViewController.h"
-#import "PandaViewController2.h"
-#import <PandaHook/PandaHook.h>
+#import "PhDetailVC.h"
 
-typedef void(^TestBlock)(NSInteger testInteger , NSString * testStr ,  id obj);
-@interface PandaViewController ()
-@property (nonatomic , strong) TestBlock testBlock;
+@interface PandaViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray <NSString *>* dataArr;
 @end
 
 @implementation PandaViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-    
-    [PandaHook hookObj:[UIViewController class] whichMethod:@selector(viewDidAppear:) isClassMethod:NO when:PandaHookTimeBefore with:^(NSArray *contextArr) {
 
-        NSLog(@"UIViewController页面出现的hook，执行的对象是%@",contextArr.firstObject);
-    }];
-    
-//    [PandaHook hookObj:[PandaViewController class] whichMethod:@selector(testHookInsSel:vc:obj:) isClassMethod:YES when:PandaHookTimeAfter with:^(NSArray *contextArr) {
-//
-//        NSLog(@"PandaViewController类方法testHookInsSel:vc:obj:的hook");
-//    }];
-//    [PandaViewController testHookInsSel:2 vc:self obj:@{@"test_key":@"test-Class"}];
-//    self.testBlock = ^void(NSInteger testInteger , NSString * testStr ,  id obj){
-//
-//        NSLog(@"\n原block打印：\n%@\n%@\n%@",@(testInteger),testStr,obj);
-//    };
-//    [PandaHook hookObj:self.testBlock whichMethod:@selector(invoke) isClassMethod:YES when:PandaHookTimeInstead with:^(NSArray *contextArr) {
-//
-//        NSLog(@"block hook执行的自定义代码");
-//    }];
-    
+    self.title = @"PandaHook API详解";
+    [self configTable];
 }
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+
+- (void)configTable{
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+    self.tableView.tableFooterView = [UIView new];
+    
+    self.dataArr = [NSMutableArray new];
+    [self.dataArr addObjectsFromArray:@[@"对象方法的hook",@"类方法的hook"]];//,@"block对象的hook"
 }
+
 - (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
     
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//
+//        //用来测试PhDetailVC实例释放后，是否还调用其所持有的block
+//        [PhDetailVC addViewToWindowWithBGclolr:[UIColor blackColor] with:self andTitle:@"这是在PandaViewController页面添加的按钮"];
+//    });
 }
-- (IBAction)clickObjBtn:(UIButton *)sender {
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    PandaViewController2 * vc = [PandaViewController2 new];
-    vc.view.backgroundColor = [UIColor orangeColor];
-    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    PhDetailVC *vc = [PhDetailVC new];
+    vc.title = self.dataArr[indexPath.row];
+    vc.hookType = indexPath.row;
     [self.navigationController pushViewController:vc animated:YES];
 }
-- (IBAction)clickClassBtn:(UIButton *)sender {
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    [PandaHook printfAllMethodList:[PandaViewController class]];
-    [PandaViewController testHookInsSel:2 vc:self obj:@{@"test_key":@"test-Class"}];
-}
-- (IBAction)clickBlockBtn:(UIButton *)sender {
-    
-    self.testBlock(3, @"block", @{@"test_key":@"test-Block"});
-}
-+ (void)classMethodTest{
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class])];
+    cell.textLabel.text = self.dataArr[indexPath.row];
+    return cell;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return self.dataArr.count;
 }
 
-//- (void)testHookInsSel:(NSInteger)first vc:(UIViewController *)vc obj:(id)obj_id{
-//
-//    NSLog(@"\n-testHookInsSel:vc:obj:原生 参数：\n%@\n%@\n%@",@(first),vc,obj_id);
-//}
-
-+ (void)testHookInsSel:(NSInteger)first vc:(UIViewController *)vc obj:(id)obj_id{
+- (void)clickBtn:(UIButton *)sender{
     
-    NSLog(@"\n+testHookInsSel:vc:obj:原生打印");
+    [sender removeFromSuperview];
 }
 @end

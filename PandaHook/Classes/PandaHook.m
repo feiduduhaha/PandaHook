@@ -63,7 +63,15 @@ typedef  struct PandaHook_Block_layout  *PandaHook_Block;
 typedef  void(^HookBlock) (NSDictionary * context);
 
 #define PandaHook_DeepCopyBlockTag @"PandaHook_DeepCopyBlockTag"
+
+#ifdef DEBUG
 #define PandaHook_Continue(status,msg) if(!status) {NSLog(@"%@",msg); return nil;}
+#define PandaHook_Log(msg) NSLog(@"%@",msg);
+#else
+#define PandaHook_Continue(status,msg);
+#define PandaHook_Log(msg);
+#endif
+
 
 static PandaHook * hookManager = nil;
 
@@ -84,21 +92,18 @@ NSString * saveMethodName (SEL sel , BOOL isClassMethod){
 
 @implementation PandaHook
 
-+ (PandaHookBlock)hookObj:(id)targetObj
-          whichMethod:(SEL)method
-        isClassMethod:(BOOL)isClassMethod
-                 when:(PandaHookTime)hookTime
-                 with:(PandaHookBlock) customImplementation
++ (PandaHookBlock)hookClass:(Class)targetClass
+                whichMethod:(SEL)method
+              isClassMethod:(BOOL)isClassMethod
+                       when:(PandaHookTime)hookTime
+                       with:(PandaHookBlock) customImplementation
 {
     if (!customImplementation) return nil;
-    NSString * hookIdentify = nil;
+    if (!object_isClass(targetClass)) return nil;
+    
+    Class handalClass = isClassMethod ? object_getClass(targetClass) : targetClass;
+    NSString * hookIdentify = hookRecordIdentify(handalClass, method, isClassMethod);
     //判断同一个对象的同一个方法是否hook过
-    Class handalClass = object_isClass(targetObj) ?  targetObj : [targetObj class];
-    if (isClassMethod) {
-        
-        handalClass = object_getClass(handalClass);
-    }
-    hookIdentify =  hookRecordIdentify(handalClass, method, isClassMethod);
     BOOL didHook = [hookManager.blockPool didHookedWithIdentify:hookIdentify];
     
     if (!didHook) {//如果没有hook过，进行hook
@@ -112,11 +117,12 @@ NSString * saveMethodName (SEL sel , BOOL isClassMethod){
         //将targetObj的forward实现指向pandaForward
         SEL pandaSel = @selector(pandaHook_forwardInvocation:);
         Method pandaMethod = class_getInstanceMethod([PandaHook class], pandaSel);
-        PandaHook_Continue([self addMethodForObj:handalClass method:pandaMethod newMethodName:@"forwardInvocation:"],
-        @"PandaHook-保存原forwardInvocation:失败，放弃hook");
+        //PandaHook-保存原forwardInvocation:
+        [self addMethodForObj:handalClass method:pandaMethod newMethodName:@"forwardInvocation:"];
         //将旧方法指向forward实现，为了安全起见，这步操作一定要上面的操作全部成功才能操作
         PandaHook_Continue(method_setImplementation(oldMethod, _objc_msgForward),@"PandaHook-旧forward指向pandaForward失败，放弃hook");
         didHook = YES;
+        PandaHook_Log([@"hook成功" stringByAppendingString:hookIdentify]);
     }
     if (didHook) {//如果成功hook，保存实现,__NSStackBlock__类型需要转为__NSMallocBlock__ ，至于__NSGlobalBlock__类型，保存时会判断内存地址
         
@@ -152,19 +158,15 @@ NSString * saveMethodName (SEL sel , BOOL isClassMethod){
     IMP pandaImp = method_getImplementation(method);
     return class_addMethod(class,NSSelectorFromString(newSelName),pandaImp,method_getTypeEncoding(method));
 }
-/**
-取消hook，恢复到hook之前的代码
-
-@param identify hook标记
-*/
-+ (void)removeHookWithIdentify:(NSString *)identify hooktime:(PandaHookTime)hooktime{
-    
-    [hookManager.blockPool removeBlcokWithIdentify:identify andCallTime:hooktime];
-}
-
 #pragma mark  normal hook
 - (void)pandaHook_forwardInvocation:(NSInvocation *)invocation {
 
+    if ([NSStringFromSelector(invocation.selector) isEqualToString:@"forwardInvocation:"]) {
+        
+        invocation.target = [object_getClass(invocation.target) superclass];
+        [invocation invoke];
+        return;
+    }
     BOOL isClassMethod = object_isClass(invocation.target);
     NSString * hookIdentify = nil;
     //区分block或者其他oc类型，对invocation重定向
