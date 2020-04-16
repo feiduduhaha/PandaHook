@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PandaHook'
-  s.version          = '1.5.1'
+  s.version          = '1.5.3'
   s.summary          = 'PandaHook.方便hook'
 
 # This description is used to generate tags and improve search results.
