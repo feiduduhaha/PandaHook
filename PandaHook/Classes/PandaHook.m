@@ -222,11 +222,11 @@ NSString * saveMethodName (SEL sel , BOOL isClassMethod){
             [invocation invoke];
         }else{
             
-#ifdef DEBUG
-            //如果能响应方法，DEBUG下还是保持OC的逻辑抛错
-            [invocation.target doesNotRecognizeSelector:invocation.selector];
-#endif
-        }
+//#ifdef DEBUG
+//            //如果能响应方法，DEBUG下还是保持OC的逻辑抛错
+//            [invocation.target doesNotRecognizeSelector:invocation.selector];
+//#endif
+//        }
     }
     
     arr = [hookManager.blockPool getBlocksWithIdentify:hookIdentify callTime:PandaHookTimeAfter];
