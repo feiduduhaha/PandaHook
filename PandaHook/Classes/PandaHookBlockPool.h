@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addNewBlcokWithIdentify:(NSString *)identify andCallTime:(PandaHookTime)calltime block:(id)block;
 - (void)removeBlcokWithIdentify:(NSString *)identify andCallTime:(PandaHookTime)calltime;
 - (NSArray*)getBlocksWithIdentify:(NSString *)identify callTime:(PandaHookTime)calltime;
-
+- (void)releaseBlock:(id)block with:(PandaHookTime)hookTime;
 @end
 
 NS_ASSUME_NONNULL_END

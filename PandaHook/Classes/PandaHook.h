@@ -32,6 +32,11 @@ typedef void(^PandaHookBlock)(NSArray * contextArr);
                        when:(PandaHookTime)hookTime
                        with:(PandaHookBlock) customImplementation;
 
+/// releaseBlock
+/// @param block 要释放的blcok对象
+/// @param hookTime hook时机
++ (void)releaseBlock:(PandaHookBlock)block with:(PandaHookTime)hookTime;
+
 /// 获取所有hook信息，用于查找排错
 + (NSArray *)getAllHookMessage;
 /// 打印对象的方法列表

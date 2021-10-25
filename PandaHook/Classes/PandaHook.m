@@ -222,11 +222,11 @@ NSString * saveMethodName (SEL sel , BOOL isClassMethod){
             [invocation invoke];
         }else{
             
-//#ifdef DEBUG
-//            //如果能响应方法，DEBUG下还是保持OC的逻辑抛错
-//            [invocation.target doesNotRecognizeSelector:invocation.selector];
-//#endif
-//        }
+#ifdef DEBUG
+            //如果能响应方法，DEBUG下还是保持OC的逻辑抛错
+            [invocation.target doesNotRecognizeSelector:invocation.selector];
+#endif
+        }
     }
     
     arr = [hookManager.blockPool getBlocksWithIdentify:hookIdentify callTime:PandaHookTimeAfter];
@@ -289,6 +289,11 @@ NSString * saveMethodName (SEL sel , BOOL isClassMethod){
     return hookManager.blockPool.recordArr;
 }
 
+/// releaseBlock
++ (void)releaseBlock:(PandaHookBlock)block with:(PandaHookTime)hookTime{
+    
+    [hookManager.blockPool releaseBlock:block with:hookTime];
+}
 #pragma mark aspectMethod
 //对于NSInvocation参数的获取，感谢aspects框架的开发者们，也感谢ReactiveCocoa团队提供的这种方式
 // Thanks to the ReactiveCocoa team for providing a generic solution for this.

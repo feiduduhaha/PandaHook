@@ -23,57 +23,67 @@
     
     return self.beforeDic[identify] || self.insteadDic[identify] || self.afterDic[identify];
 }
+
 - (void)addNewBlcokWithIdentify:(NSString *)identify andCallTime:(PandaHookTime)calltime block:(id)block{
     
-    NSPointerArray * oriArr = [NSPointerArray weakObjectsPointerArray];
-    BOOL shouldAdd = YES;
-    for (id obj in [self getBlocksWithIdentify:identify callTime:calltime]) {
-        
-        [oriArr addPointer:(void *)obj];
-        if ([obj isEqual:block]) shouldAdd = NO;
+    NSMutableDictionary * handleDic = [self getHandleDicWithCallTime:calltime];
+    NSPointerArray * oriArr = handleDic[identify];
+    
+    if (!oriArr) {
+        oriArr = [NSPointerArray weakObjectsPointerArray];
     }
-    if (shouldAdd) {
+    if (![oriArr.allObjects containsObject:block]) {
         
         [oriArr addPointer:(void *)block];
     }
     [oriArr compact];
-    if (calltime == PandaHookTimeBefore) {
-        
-        [self.beforeDic setObject:oriArr forKey:identify];
-    } else if (calltime == PandaHookTimeInstead){
-        
-        [self.insteadDic setObject:oriArr forKey:identify];
-    }else{
-        
-        [self.afterDic setObject:oriArr forKey:identify];
-    }
     
+    [handleDic setObject:oriArr forKey:identify];
 }
+
 - (void)removeBlcokWithIdentify:(NSString *)identify andCallTime:(PandaHookTime)calltime{
     
-    if (calltime == PandaHookTimeBefore) {
-        
-        [self.beforeDic removeObjectForKey:identify];
-    } else if (calltime == PandaHookTimeInstead){
-        
-        [self.insteadDic removeObjectForKey:identify];
-    }else{
-        
-        [self.afterDic removeObjectForKey:identify];
-    }
+    [[self getHandleDicWithCallTime:calltime] removeObjectForKey:identify];
 }
 
 - (NSArray*)getBlocksWithIdentify:(NSString *)identify callTime:(PandaHookTime)calltime{
     
+    NSPointerArray * handleArr = [self getHandleDicWithCallTime:calltime][identify];
+    [handleArr compact];
+    return handleArr.allObjects ?:[NSArray new];
+}
+
+- (void)releaseBlock:(id)block with:(PandaHookTime)hookTime{
+    
+    NSMutableDictionary * handleDic = [self getHandleDicWithCallTime:hookTime];
+    
+    for (NSPointerArray *arr in handleDic.allValues) {
+        
+        int i = -1;
+        for (id obj in arr) {
+            i++;
+            if ([obj isEqual:block]) break;
+        }
+        if (i > -1) {
+            
+            [arr removePointerAtIndex:i];
+            return;
+        }
+    }
+    
+}
+
+- (NSMutableDictionary *)getHandleDicWithCallTime:(PandaHookTime)calltime{
+    
     if (calltime == PandaHookTimeBefore) {
         
-        return self.beforeDic[identify].allObjects ?:[NSArray new];
+        return self.beforeDic;
     } else if (calltime == PandaHookTimeInstead){
         
-        return self.insteadDic[identify].allObjects ?:[NSArray new];
+        return self.insteadDic;
     }else{
         
-        return self.afterDic[identify].allObjects ?:[NSArray new];
+        return self.afterDic;
     }
 }
 
